@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime | thegodfantom</title>
+    <style>
+        /* Base Reset & Layout - Dark Crimson & Black Theme */
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh; 
+            display: flex;
+            justify-content: center;
+            background-color: #0d0000; 
+            color: #e2d1d1; 
+            font-family: "Times New Roman", Times, serif; 
+        }
+
+        .container {
+            width: 85%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 0; 
+            box-sizing: border-box;
+        }
+
+        .content-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            justify-content: center;
+        }
+
+        nav button {
+            background-color: #330000; 
+            color: #ffcccc; 
+            border: 1px solid #800000; 
+            padding: 0.4rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.2s ease-in-out;
+        }
+
+        nav button:hover {
+            background-color: #ff1a1a; 
+            color: #000000; 
+            border-color: #ff1a1a;
+            box-shadow: 0 0 10px rgba(255, 26, 26, 0.5); 
+        }
+
+        /* --- ANIME LIST STYLES --- */
+        .page-title {
+            color: #ff4d4d;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #4d0000;
+            padding-bottom: 0.5rem;
+        }
+
+        .anime-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* Split Layout Card */
+        .anime-card {
+            display: flex;
+            flex-direction: row;
+            background-color: #120000;
+            border: 1px solid #4d0000;
+            border-radius: 4px;
+            padding: 1.5rem;
+            transition: all 0.2s ease-in-out;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .anime-card:hover {
+            border-color: #ff1a1a;
+            box-shadow: 0 0 15px rgba(255, 26, 26, 0.15); 
+        }
+
+        /* Left Side: Text */
+        .anime-info {
+            flex: 1; /* Takes up available space */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .anime-title {
+            color: #ffcccc;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin: 0 0 0.8rem 0;
+            letter-spacing: 1px;
+        }
+
+        .anime-desc {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #b39999;
+            margin: 0;
+            text-align: justify;
+        }
+
+        /* Right Side: Image Container */
+        .anime-image-container {
+            width: 220px; /* Fixed width for uniformity */
+            height: 140px;
+            flex-shrink: 0; /* Prevents image from squishing */
+            border: 1px solid #330000;
+            border-radius: 4px;
+            overflow: hidden;
+            background-color: #050000; /* Darker fallback if image doesn't load */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+        }
+
+        .anime-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures images fill the box perfectly without stretching */
+            transition: transform 0.3s ease;
+        }
+
+        .anime-card:hover .anime-image-container img {
+            transform: scale(1.05); /* Slight zoom on image when hovering over the card */
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 650px) {
+            .anime-card {
+                flex-direction: column-reverse; /* Image goes on top of text on small screens */
+                gap: 1rem;
+                padding: 1rem;
+            }
+            .anime-image-container {
+                width: 100%;
+                height: 180px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 3rem; 
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid #4d0000; 
+        }
+
+        .socials { margin-bottom: 0.5rem; }
+        .socials a {
+            color: #ff4d4d; 
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: color 0.2s, text-shadow 0.2s;
+        }
+
+        .socials a:hover {
+            text-decoration: underline;
+            color: #ff1a1a; 
+            text-shadow: 0 0 5px rgba(255, 26, 26, 0.5); 
+        }
+
+        .copyleft { font-size: 0.8rem; color: #800000; }
+        .copyleft-symbol { display: inline-block; transform: scaleX(-1); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="content-area">
+            
+            <nav>
+                <a href="index.html"><button>Home</button></a>
+                <a href="Projects.html"><button>Projects</button></a>
+                <a href="RE-blg.html"><button>Research Blogs</button></a>
+            </nav>
+
+            <h1 class="page-title"><em>Anime</em></h1>
+
+            <div class="anime-list">
+                
+                <div class="anime-card">
+                    <div class="anime-info">
+                        <h2 class="anime-title">Hunter x Hunter</h2>
+                        <p class="anime-desc">A brilliant subversion of classic shonen tropes. It follows Gon Freecss on his journey to find his father, leading him into the dangerous world of Hunters. Renowned for its incredibly detailed power system (Nen) and phenomenal character writing, particularly in the dark Chimera Ant arc.</p>
+                    </div>
+                    <div class="anime-image-container">
+                        <img src="gif/hxh" alt="Hunter x Hunter">
+                    </div>
+                </div>
+
+                <div class="anime-card">
+                    <div class="anime-info">
+                        <h2 class="anime-title">Berserk</h2>
+                        <p class="anime-desc">The absolute pinnacle of dark fantasy. Following Guts, the Black Swordsman, in a relentless and brutal struggle against causality, demons, and his former commanding officer. A gritty, philosophical masterpiece about human willpower.</p>
+                    </div>
+                    <div class="anime-image-container">
+                        <img src="gif/berserk.jpg" alt="Berserk">
+                    </div>
+                </div>
+
+                <div class="anime-card">
+                    <div class="anime-info">
+                        <h2 class="anime-title">Bleach</h2>
+                        <p class="anime-desc">With unmatched drip and one of the best soundtracks in anime history, this follows Ichigo Kurosaki as he is thrust into the role of a Substitute Soul Reaper. Massive swords, Hollows, and incredible battles in the Soul Society make this a classic.</p>
+                    </div>
+                    <div class="anime-image-container">
+                        <img src="gif/bleach.jpg" alt="Bleach">
+                    </div>
+                </div>
+
+                <div class="anime-card">
+                    <div class="anime-info">
+                        <h2 class="anime-title">Vinland Saga</h2>
+                        <p class="anime-desc">A profound historical epic set during the Viking Age. It masterfully transitions from a story of pure, bloodthirsty revenge to a deeply emotional journey about redemption, pacifism, and what it truly means to be a warrior.</p>
+                    </div>
+                    <div class="anime-image-container">
+                        <img src="gif/vinland saga.jpg" alt="Vinland Saga">
+                    </div>
+                </div>
+
+                <div class="anime-card">
+                    <div class="anime-info">
+                        <h2 class="anime-title">Death Note</h2>
+                        <p class="anime-desc">A high-stakes, supernatural cat-and-mouse thriller. Light Yagami discovers a notebook that kills anyone whose name is written in it, leading to a brilliant psychological war of wits against the eccentric detective known only as 'L'.</p>
+                    </div>
+                    <div class="anime-image-container">
+                        <img src="gif/deathnote.jpg" alt="Death Note">
+                    </div>
+                </div>
+
+                <div class="anime-card">
+                    <div class="anime-info">
+                        <h2 class="anime-title">Naruto</h2>
+                        <p class="anime-desc">The defining ninja epic. From a lonely outcast pulling pranks to a hero fighting to protect his village, Naruto's journey is filled with iconic jutsu, complex villains, and unforgettable emotional beats.</p>
+                    </div>
+                    <div class="anime-image-container">
+                        <img src="gif/naruto.jpg" alt="Naruto">
+                    </div>
+                </div>
+
+                <div class="anime-card">
+                    <div class="anime-info">
+                        <h2 class="anime-title">Hajime no Ippo</h2>
+                        <p class="anime-desc">Pure, unadulterated hype. Watching Ippo Makunouchi transform from a bullied high schooler into a terrifying force in the professional boxing ring is incredibly inspiring. The sound design during the fights hits as hard as a Dempsey Roll.</p>
+                    </div>
+                    <div class="anime-image-container">
+                        <img src="gif/hajime no ippo.jpg" alt="Hajime no Ippo">
+                    </div>
+                </div>
+
+                <div class="anime-card">
+                    <div class="anime-info">
+                        <h2 class="anime-title">The Eminence in Shadow</h2>
+                        <p class="anime-desc">A hilarious and stylish isekai that completely owns its edgy premise. Cid Kagenou doesn't want to be the hero or the villain; he just wants to be the ultimate mastermind operating from the shadows—and he's playing the role perfectly.</p>
+                    </div>
+                    <div class="anime-image-container">
+                        <img src="gif/eminance.jpg" alt="The Eminence in Shadow">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <div class="socials">
+                <a href="https://github.com/thegodfantom">GitHub</a>
+                <a href="https://www.linkedin.com/in/rohit-b-83b986252/">LinkedIn</a>
+                <a href="https://x.com/thegodfantom">x.com</a>
+            </div>
+            <div class="copyleft">
+                <span class="copyleft-symbol">&copy;</span> 2026 All Rights Reversed
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>

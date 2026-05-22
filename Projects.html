@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | thegodfantom</title>
+    <style>
+        /* Base Reset & Layout - Dark Crimson & Black Theme */
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh; 
+            display: flex;
+            justify-content: center;
+            background-color: #0d0000; 
+            color: #e2d1d1; 
+            font-family: "Times New Roman", Times, serif; 
+        }
+
+        /* Central Container - Flat Design */
+        .container {
+            width: 85%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 0; 
+            box-sizing: border-box;
+        }
+
+        /* Page Content Area */
+        .content-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* GIF Styling */
+        .gif-container {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .gif-container img {
+            width: 100%; 
+            height: auto;
+            max-height: 450px; 
+            object-fit: cover;
+            border-radius: 4px;
+            border: 2px solid #4d0000; 
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.1); 
+        }
+
+        /* Time Container */
+        .time-container {
+            text-align: left;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 0.8rem; 
+            color: #ff3333; 
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+
+        nav button {
+            background-color: #330000; 
+            color: #ffcccc; 
+            border: 1px solid #800000; 
+            padding: 0.4rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.2s ease-in-out;
+        }
+
+        nav button:hover {
+            background-color: #ff1a1a; 
+            color: #000000; 
+            border-color: #ff1a1a;
+            box-shadow: 0 0 10px rgba(255, 26, 26, 0.5); 
+        }
+
+        /* --- PROJECT SPECIFIC STYLES --- */
+        .page-title {
+            color: #ff4d4d;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #4d0000;
+            padding-bottom: 0.5rem;
+        }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .project-card {
+            background-color: #120000; /* Slightly lighter than pure background for contrast */
+            border: 1px solid #4d0000;
+            border-radius: 4px;
+            padding: 1.5rem;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .project-card:hover {
+            border-color: #ff1a1a;
+            box-shadow: 0 0 15px rgba(255, 26, 26, 0.15); /* Subtle red glow */
+        }
+
+        .project-title {
+            color: #ffcccc;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-desc {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .project-tech {
+            font-size: 0.8rem;
+            color: #ff3333;
+            margin-bottom: 1.2rem;
+            font-style: italic;
+        }
+
+        .project-links a {
+            color: #ffcccc;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-right: 15px;
+            border: 1px solid #800000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 3px;
+            transition: all 0.2s;
+            background-color: #330000;
+        }
+
+        .project-links a:hover {
+            background-color: #ff1a1a;
+            color: #000000;
+            border-color: #ff1a1a;
+            box-shadow: 0 0 8px rgba(255, 26, 26, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 3rem; 
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid #4d0000; 
+        }
+
+        .socials {
+            margin-bottom: 0.5rem;
+        }
+
+        .socials a {
+            color: #ff4d4d; 
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: color 0.2s, text-shadow 0.2s;
+        }
+
+        .socials a:hover {
+            text-decoration: underline;
+            color: #ff1a1a; 
+            text-shadow: 0 0 5px rgba(255, 26, 26, 0.5); 
+        }
+
+        .copyleft {
+            font-size: 0.8rem;
+            color: #800000; 
+        }
+
+        .copyleft-symbol {
+            display: inline-block;
+            transform: scaleX(-1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="content-area" id="projects-page">
+            
+            <div class="gif-container">
+                <img src="gif/project.gif" alt="Projects GIF">
+            </div>
+
+            <div class="time-container" id="clock">
+                00:00:00
+            </div>
+
+            <nav>
+                <a href="index.html"><button>Home</button></a>
+                <a href="Projects.html"><button>Projects</button></a>
+                <a href="RE-blg.html"><button>Research Blogs</button></a>
+            </nav>
+
+            <h1 class="page-title">My Projects</h1>
+
+            <div class="project-list">
+                
+                <div class="project-card">
+                    <h2 class="project-title">Dark Crimson Portfolio Site</h2>
+                    <p class="project-desc">A custom-built, lightweight personal portfolio website featuring a dark, minimalist aesthetic. Designed completely from scratch using raw HTML, CSS, and Vanilla JavaScript with a focus on fast load times and responsive layout.</p>
+                    <div class="project-tech">Tech Stack: HTML5, CSS3, JavaScript</div>
+                    <div class="project-links">
+                        <a href="https://github.com/thegodfantom/portfolio" target="_blank">View Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h2 class="project-title">MERN Stack Task Manager</h2>
+                    <p class="project-desc">A full-stack web application designed to help users track their daily tasks and boost productivity. Features secure user authentication, CRUD operations for to-do items, and a RESTful API backend communicating with a NoSQL database.</p>
+                    <div class="project-tech">Tech Stack: MongoDB, Express.js, React, Node.js</div>
+                    <div class="project-links">
+                        <a href="#" target="_blank">Live Demo</a>
+                        <a href="#" target="_blank">View Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h2 class="project-title">Linux System Security Scripts</h2>
+                    <p class="project-desc">A collection of custom shell scripts designed to automate system hardening and monitor background processes. It logs unauthorized access attempts and sets up basic firewall rules out-of-the-box for Debian-based environments.</p>
+                    <div class="project-tech">Tech Stack: Bash, Linux (Debian/Ubuntu)</div>
+                    <div class="project-links">
+                        <a href="#" target="_blank">View Code</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="socials">
+                <a href="https://github.com/thegodfantom">GitHub</a>
+                <a href="https://www.linkedin.com/in/rohit-b-83b986252/">LinkedIn</a>
+                <a href="https://x.com/thegodfantom">x.com</a>
+            </div>
+            <div class="copyleft">
+                <span class="copyleft-symbol">&copy;</span> 2026 All Rights Reversed
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Real-time clock logic
+        function updateTime() {
+            const now = new Date();
+            let hours = now.getHours().toString().padStart(2, '0');
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let seconds = now.getSeconds().toString().padStart(2, '0');
+            
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        updateTime(); 
+        setInterval(updateTime, 1000); 
+    </script>
+</body>
+</html>

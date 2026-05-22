@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Hardening Log | thegodfantom</title>
+    <style>
+        /* Base Reset & Layout (Same as Index) */
+        body {
+            margin: 0; padding: 0; min-height: 100vh; display: flex;
+            justify-content: center; background-color: #0d0000; 
+            color: #e2d1d1; font-family: "Times New Roman", Times, serif; 
+        }
+        .container {
+            width: 85%; max-width: 900px; display: flex;
+            flex-direction: column; padding: 2rem 0; box-sizing: border-box;
+        }
+        .content-area { flex-grow: 1; display: flex; flex-direction: column; }
+        
+        /* Time & Nav */
+        .time-container { text-align: left; font-size: 0.9rem; font-weight: bold; margin-bottom: 0.8rem; color: #ff3333; }
+        nav { display: flex; gap: 1rem; margin-bottom: 1.5rem; justify-content: center; }
+        nav button {
+            background-color: #330000; color: #ffcccc; border: 1px solid #800000; 
+            padding: 0.4rem 1.2rem; border-radius: 4px; cursor: pointer;
+            font-family: "Times New Roman", Times, serif; font-size: 0.9rem;
+            font-weight: bold; transition: all 0.2s ease-in-out;
+        }
+        nav button:hover { background-color: #ff1a1a; color: #000000; border-color: #ff1a1a; box-shadow: 0 0 10px rgba(255, 26, 26, 0.5); }
+
+        /* --- TIMELINE BLOG STYLES --- */
+        .log-header {
+            margin-bottom: 2rem; border-bottom: 1px solid #4d0000; padding-bottom: 1rem;
+        }
+        .log-title {
+            color: #ff4d4d; font-size: 1.8rem; margin: 0 0 0.5rem 0;
+        }
+        .log-description {
+            font-size: 0.9rem; color: #b39999; font-style: italic; margin: 0;
+        }
+
+        /* The vertical line container */
+        .timeline {
+            position: relative; padding-left: 20px; border-left: 2px solid #4d0000;
+        }
+
+        /* Individual update entry */
+        .update-entry {
+            position: relative; margin-bottom: 2.5rem;
+        }
+
+        /* The dot on the timeline */
+        .update-entry::before {
+            content: ''; position: absolute; left: -27px; top: 0;
+            width: 12px; height: 12px; background-color: #0d0000;
+            border: 2px solid #ff1a1a; border-radius: 50%;
+            box-shadow: 0 0 5px rgba(255, 26, 26, 0.8);
+        }
+
+        .timestamp-badge {
+            display: inline-block; background-color: #330000; color: #ffcccc;
+            font-size: 0.8rem; font-weight: bold; padding: 0.2rem 0.6rem;
+            border-radius: 3px; border: 1px solid #800000; margin-bottom: 0.8rem;
+        }
+
+        .update-content {
+            background-color: #120000; border: 1px solid #330000;
+            padding: 1rem; border-radius: 4px; font-size: 0.85rem; line-height: 1.6;
+        }
+
+        /* Highlight for the very latest update */
+        .update-entry.latest .update-content {
+            border-color: #800000; box-shadow: 0 0 10px rgba(128, 0, 0, 0.3);
+        }
+        .update-entry.latest .timestamp-badge {
+            background-color: #ff1a1a; color: #000; border-color: #ff1a1a;
+        }
+
+        /* Code block styling inside updates */
+        pre {
+            background-color: #000; border: 1px solid #4d0000;
+            padding: 0.8rem; border-radius: 3px; overflow-x: auto; color: #00ff00; /* Hacker green text */
+        }
+
+        /* Footer */
+        footer { margin-top: 3rem; text-align: center; padding-top: 1rem; border-top: 1px solid #4d0000; }
+        .socials a { color: #ff4d4d; text-decoration: none; margin: 0 15px; font-weight: bold; font-size: 0.9rem; transition: color 0.2s, text-shadow 0.2s; }
+        .socials a:hover { text-decoration: underline; color: #ff1a1a; text-shadow: 0 0 5px rgba(255, 26, 26, 0.5); }
+        .copyleft { font-size: 0.8rem; color: #800000; }
+        .copyleft-symbol { display: inline-block; transform: scaleX(-1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content-area">
+            <div class="time-container" id="clock">00:00:00</div>
+            
+            <nav>
+                <a href="RE-blg.html"><button>&larr; Back to Feed</button></a>
+            </nav>
+
+            <div class="log-header">
+                <h1 class="log-title">Deep Dive: Automated Debian Hardening Scripts</h1>
+                <p class="log-description">Status: Ongoing. Documenting my custom bash scripts for server lockdown.</p>
+            </div>
+
+            <div class="timeline">
+                
+                <div class="update-entry latest">
+                    <div class="timestamp-badge">UPDATE: 03 Mar 2026 - 04:30 IST</div>
+                    <div class="update-content">
+                        <p>Finally cracked the issue with iptables persisting after reboot. Wrote a small daemon that checks the config hashes on startup. If someone tampers with the rules, it restores from a secure backup.</p>
+                        <p>Next step: Hooking this up to a Discord webhook so I get pinged on my phone if a rule changes unexpectedly. Time for the gym first though, chest day.</p>
+                    </div>
+                </div>
+
+                <div class="update-entry">
+                    <div class="timestamp-badge">28 Feb 2026 - 22:15 IST</div>
+                    <div class="update-content">
+                        <p>Ran into a roadblock. The bash script is dropping my SSH connection when applying the default DROP policy before allowing port 22. Need to reorder the logic.</p>
+<pre><code># Note to self: ALWAYS ALLOW SSH FIRST
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+iptables -P INPUT DROP
+</code></pre>
+                        <p>Rookie mistake, almost locked myself out of my own testing VM.</p>
+                    </div>
+                </div>
+
+                <div class="update-entry">
+                    <div class="timestamp-badge">25 Feb 2026 - 18:00 IST</div>
+                    <div class="update-content">
+                        <p>Starting a new side project. I'm tired of manually locking down Debian environments every time I spin up a new instance. I'm going to write a master bash script that automates:</p>
+                        <ul>
+                            <li>Disabling root login via SSH</li>
+                            <li>Setting up fail2ban</li>
+                            <li>Configuring basic iptables rules</li>
+                        </ul>
+                        <p>Will log my progress here.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <div class="socials">
+                <a href="https://github.com/thegodfantom">GitHub</a>
+                <a href="https://www.linkedin.com/in/rohit-b-83b986252/">LinkedIn</a>
+                <a href="https://x.com/thegodfantom">x.com</a>
+            </div>
+            <div class="copyleft"><span class="copyleft-symbol">&copy;</span> 2026 All Rights Reversed</div>
+        </footer>
+    </div>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('clock').textContent = 
+                now.getHours().toString().padStart(2, '0') + ':' + 
+                now.getMinutes().toString().padStart(2, '0') + ':' + 
+                now.getSeconds().toString().padStart(2, '0');
+        }
+        updateTime(); setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
